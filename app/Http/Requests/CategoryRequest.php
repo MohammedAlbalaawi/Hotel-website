@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\FilterName;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -32,11 +33,12 @@ class CategoryRequest extends FormRequest
                 'string', 'min:3',
                 'max:255',
                 Rule::unique('categories', 'name')->ignore(optional($this->model)->id),
-                function ($attribute, $value, $fails) {
-                    if (strtolower($value) == 'admin' || strtolower($value) == 'administrator') {
-                        $fails('This name is forbidden');
-                    }
-                }
+//                function ($attribute, $value, $fails) {
+//                    if (strtolower($value) == 'admin' || strtolower($value) == 'administrator') {
+//                        $fails('This name is forbidden');
+//                    }
+//                }
+            new FilterName()
             ],
             'slug' => ['required'],
             'description' => ['required'],
