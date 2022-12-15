@@ -38,7 +38,7 @@ class CategoryRequest extends FormRequest
 //                        $fails('This name is forbidden');
 //                    }
 //                }
-            new FilterName()
+            new FilterName(['admin', 'leo'])
             ],
             'slug' => ['required'],
             'description' => ['required'],

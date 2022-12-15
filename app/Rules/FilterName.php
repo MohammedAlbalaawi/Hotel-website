@@ -7,14 +7,15 @@ use Illuminate\Contracts\Validation\Rule;
 class FilterName implements Rule
 {
 
-    public function __construct()
+    protected $forbidden;
+    public function __construct($forbidden)
     {
-        //
+        $this->forbidden = $forbidden;
     }
 
     public function passes($attribute, $value)
     {
-        return !(strtolower($value == 'admin'));
+        return !in_array($value, $this->forbidden);
     }
 
 
